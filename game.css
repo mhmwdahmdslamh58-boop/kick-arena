@@ -1,0 +1,591 @@
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    min-height:100%;
+    font-family:Arial,Tahoma,sans-serif;
+    background:#040a12;
+    color:#fff;
+}
+
+body{
+    min-height:100vh;
+    background:radial-gradient(
+        circle at top,
+        #0b2032 0%,
+        #050b14 48%,
+        #02050a 100%
+    );
+}
+
+button{
+    font:inherit;
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+.game-page{
+    width:min(1100px,94%);
+    margin:auto;
+    padding:25px 0 50px;
+}
+
+.screen{
+    width:100%;
+}
+
+/* ================================
+   الصناديق
+================================ */
+
+.setup-box,
+.result-box{
+    width:min(720px,100%);
+    margin:40px auto;
+    padding:28px;
+    background:rgba(7,20,34,.92);
+    border:1px solid rgba(0,174,255,.3);
+    border-radius:24px;
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.35),
+        0 0 28px rgba(0,174,255,.08);
+    text-align:center;
+}
+
+.game-logo{
+    color:#00aeff;
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+h1,
+h2{
+    margin:12px 0;
+}
+
+.setup-text,
+.hint{
+    color:#9fb0bf;
+    line-height:1.8;
+}
+
+/* ================================
+   الاختيارات
+================================ */
+
+.mode-options,
+.level-options{
+    display:grid;
+    gap:12px;
+    margin:22px 0;
+}
+
+/* ================================
+   الأزرار
+================================ */
+
+.choice-btn,
+.main-btn,
+.back-btn,
+.small-btn,
+.action-btn{
+    border-radius:14px;
+    padding:14px 18px;
+    border:1px solid rgba(0,174,255,.35);
+    color:#fff;
+    background:#091827;
+
+    transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+/* إضاءة الأزرار */
+
+.choice-btn:hover,
+.main-btn:hover,
+.back-btn:hover,
+.small-btn:hover,
+.action-btn:hover{
+    transform:translateY(-2px);
+    border-color:#00aeff;
+
+    box-shadow:
+        0 0 7px rgba(0,174,255,.8),
+        0 0 16px rgba(0,174,255,.55),
+        0 0 30px rgba(0,174,255,.25);
+}
+
+.choice-btn:active,
+.main-btn:active,
+.back-btn:active,
+.small-btn:active,
+.action-btn:active{
+    transform:scale(.98);
+
+    box-shadow:
+        0 0 6px rgba(0,174,255,.9),
+        0 0 18px rgba(0,174,255,.55);
+}
+
+/* ================================
+   الزر المختار
+================================ */
+
+.choice-btn.active{
+    background:linear-gradient(
+        135deg,
+        #063b5b,
+        #087db7
+    );
+
+    border-color:#00aeff;
+
+    box-shadow:
+        0 0 8px rgba(0,174,255,.8),
+        0 0 20px rgba(0,174,255,.5);
+}
+
+/* ================================
+   زر البداية
+================================ */
+
+.main-btn{
+    width:100%;
+    margin-top:10px;
+
+    background:#00aeff;
+    color:#03101b;
+
+    font-weight:900;
+    border-color:#00aeff;
+
+    box-shadow:
+        0 0 8px rgba(0,174,255,.9),
+        0 0 20px rgba(0,174,255,.6),
+        0 0 38px rgba(0,174,255,.3);
+}
+
+.main-btn:hover{
+    background:#19b9ff;
+
+    box-shadow:
+        0 0 10px rgba(0,174,255,1),
+        0 0 25px rgba(0,174,255,.8),
+        0 0 45px rgba(0,174,255,.4);
+}
+
+/* ================================
+   زر الرجوع
+================================ */
+
+.back-btn{
+    width:100%;
+    margin-top:10px;
+    background:transparent;
+}
+
+/* ================================
+   أعلى اللعبة
+================================ */
+
+.game-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.small-btn{
+    background:#071523;
+    padding:10px 14px;
+}
+
+.round-label{
+    font-weight:900;
+    color:#00aeff;
+}
+
+/* ================================
+   الدور
+================================ */
+
+.turn-box{
+    padding:14px;
+    border-radius:15px;
+    text-align:center;
+
+    background:rgba(0,174,255,.08);
+    border:1px solid rgba(0,174,255,.2);
+
+    margin:15px 0;
+    font-weight:800;
+}
+
+/* ================================
+   معلومات اللاعبين
+================================ */
+
+.players-info{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-bottom:15px;
+}
+
+.info-box{
+    background:rgba(7,20,34,.9);
+    border:1px solid rgba(0,174,255,.18);
+    border-radius:15px;
+    padding:12px;
+    text-align:center;
+}
+
+.info-box span{
+    display:block;
+    color:#8497a8;
+    font-size:13px;
+}
+
+.info-box strong{
+    display:block;
+    margin-top:5px;
+    color:#fff;
+}
+
+/* ================================
+   لوحة اللاعبين
+================================ */
+
+.players-grid,
+#selectionPlayers,
+#gameBoard,
+#guessPlayers{
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:22px;
+
+    margin:0 auto;
+}
+
+/* ================================
+   كروت اللاعبين
+================================ */
+
+.player-card{
+    position:relative;
+    overflow:hidden;
+    min-width:0;
+
+    padding:0 0 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0a1b2c,
+            #07111d
+        );
+
+    border:1px solid rgba(0,174,255,.3);
+    border-radius:17px;
+
+    color:#fff;
+    text-align:center;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.25);
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
+}
+
+.player-card:hover{
+    transform:translateY(-3px);
+
+    border-color:#00aeff;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.35),
+        0 0 10px rgba(0,174,255,.5),
+        0 0 22px rgba(0,174,255,.25);
+}
+
+.player-card img{
+    display:block;
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    background:#071421;
+}
+
+.player-card span{
+    display:block;
+    padding:9px 5px 2px;
+
+    font-weight:800;
+    font-size:14px;
+    line-height:1.35;
+}
+
+/* ================================
+   اللاعب المختار
+================================ */
+
+.player-card.selected{
+    border-color:#00aeff;
+
+    box-shadow:
+        0 0 8px rgba(0,174,255,.8),
+        0 0 22px rgba(0,174,255,.5);
+
+    transform:translateY(-3px);
+}
+
+/* ================================
+   اللاعب المستبعد
+================================ */
+
+.player-card.eliminated{
+    opacity:.55;
+    filter:grayscale(.65);
+}
+
+.player-card.eliminated:after{
+    content:"❌";
+
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:64px;
+
+    background:rgba(0,0,0,.28);
+
+    text-shadow:
+        0 0 12px #000,
+        0 0 20px #ff304f,
+        0 0 35px rgba(255,48,79,.7);
+}
+
+/* ================================
+   أزرار اللعبة
+================================ */
+
+.game-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:22px;
+}
+
+.action-btn{
+    font-weight:900;
+    background:#0b1827;
+}
+
+.action-btn.primary{
+    background:#00aeff;
+    color:#03101b;
+    border-color:#00aeff;
+
+    box-shadow:
+        0 0 8px rgba(0,174,255,.9),
+        0 0 20px rgba(0,174,255,.55),
+        0 0 35px rgba(0,174,255,.25);
+}
+
+.action-btn.primary:hover{
+    background:#19b9ff;
+
+    box-shadow:
+        0 0 10px rgba(0,174,255,1),
+        0 0 25px rgba(0,174,255,.8),
+        0 0 45px rgba(0,174,255,.4);
+}
+
+/* ================================
+   زر خلصت
+================================ */
+
+#finishBtn{
+    border-color:#ff9f1c;
+
+    box-shadow:
+        0 0 6px rgba(255,159,28,.65),
+        0 0 14px rgba(255,159,28,.35);
+}
+
+#finishBtn:hover{
+    border-color:#ffb43b;
+
+    box-shadow:
+        0 0 8px rgba(255,159,28,.9),
+        0 0 20px rgba(255,159,28,.6),
+        0 0 35px rgba(255,159,28,.3);
+}
+
+/* ================================
+   زر خمن اللاعب
+================================ */
+
+#guessBtn{
+    border-color:#9b5cff;
+
+    box-shadow:
+        0 0 6px rgba(155,92,255,.65),
+        0 0 15px rgba(155,92,255,.35);
+}
+
+#guessBtn:hover{
+    border-color:#b47aff;
+
+    box-shadow:
+        0 0 8px rgba(155,92,255,.95),
+        0 0 20px rgba(155,92,255,.65),
+        0 0 38px rgba(155,92,255,.35);
+}
+
+/* ================================
+   زر التأكيد
+================================ */
+
+#confirmBtn{
+    box-shadow:
+        0 0 7px rgba(0,174,255,.65),
+        0 0 16px rgba(0,174,255,.3);
+}
+
+#confirmBtn:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+    box-shadow:none;
+}
+
+/* ================================
+   النتيجة
+================================ */
+
+.result-box{
+    margin-top:90px;
+}
+
+.result-box>div:first-child{
+    font-size:60px;
+}
+
+.result-box p{
+    color:#aebdca;
+    font-size:20px;
+}
+
+/* ================================
+   الموبايل
+================================ */
+
+@media(max-width:700px){
+
+    .game-page{
+        width:96%;
+        padding-top:12px;
+    }
+
+    .setup-box,
+    .result-box{
+        margin-top:18px;
+        padding:20px;
+    }
+
+    .players-grid,
+    #selectionPlayers,
+    #gameBoard,
+    #guessPlayers{
+        grid-template-columns:
+            repeat(4,minmax(0,1fr));
+
+        gap:8px;
+    }
+
+    .player-card{
+        border-radius:10px;
+        padding-bottom:5px;
+    }
+
+    .player-card span{
+        font-size:10px;
+        padding:6px 2px;
+    }
+
+    .player-card.eliminated:after{
+        font-size:36px;
+    }
+
+    .players-info{
+        gap:6px;
+    }
+
+    .info-box{
+        padding:9px 4px;
+    }
+
+    .info-box span{
+        font-size:10px;
+    }
+
+    .info-box strong{
+        font-size:12px;
+    }
+
+    .game-actions{
+        gap:8px;
+    }
+
+    .action-btn{
+        padding:12px 6px;
+        font-size:14px;
+    }
+
+    .choice-btn,
+    .main-btn,
+    .back-btn,
+    .small-btn{
+        padding:12px 10px;
+    }
+}
+
+/* ================================
+   التابلت
+================================ */
+
+@media(min-width:701px) and (max-width:1000px){
+
+    .players-grid,
+    #selectionPlayers,
+    #gameBoard,
+    #guessPlayers{
+        grid-template-columns:
+            repeat(4,minmax(0,1fr));
+
+        gap:14px;
+    }
+}

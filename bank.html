@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>🏦 BANK ARENA</title>
+
+    <!-- التصميم الأساسي -->
+    <link rel="stylesheet" href="bank.css">
+
+    <!-- تصميم شاشة التجهيز -->
+    <link rel="stylesheet" href="bank-setup.css">
+<link rel="stylesheet" href="bank-game.css">
+  
+</head>
+
+<body>
+<main id="bankApp">
+
+
+    <!-- =====================================================
+         🏦 الشاشة الرئيسية
+    ====================================================== -->
+
+    <section id="homeScreen">
+
+        <div class="bank-logo">
+            🏦
+        </div>
+
+        <h1>
+            BANK ARENA
+        </h1>
+
+        <p class="bank-subtitle">
+            العب • خاطر • اكسب
+        </p>
+
+        <div class="bank-menu">
+<button type="button" id="playerVsPlayerBtn">
+    ⚔️ لاعب ضد لاعب
+</button>
+
+<button type="button" id="playerVsComputerBtn">
+    🤖 لاعب ضد الكمبيوتر
+</button>
+
+<button type="button" id="bankChallengeBtn">
+    🏆 تحدي البنك
+</button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         🔐 اختيار مستوى البنك
+    ====================================================== -->
+
+    <section id="levelScreen">
+
+        <div class="level-container">
+
+            <h2>
+                اختر خزنة البنك
+            </h2>
+
+            <p>
+                اختار مستوى التحدي
+            </p>
+
+            <div class="levels">
+
+
+                <!-- 🟢 سهل -->
+
+                <button
+                    type="button"
+                    class="level-card"
+                    data-level="easy"
+                >
+
+                    🟢
+
+                    <strong>
+                        خزنة البرونز
+                    </strong>
+
+                    <small>
+                        سهل
+                    </small>
+
+                    <small>
+                        ⏱️ 90 ثانية
+                    </small>
+
+                </button>
+
+
+                <!-- 🔵 متوسط -->
+
+                <button
+                    type="button"
+                    class="level-card"
+                    data-level="medium"
+                >
+
+                    🔵
+
+                    <strong>
+                        خزنة الفضة
+                    </strong>
+
+                    <small>
+                        متوسط
+                    </small>
+
+                    <small>
+                        ⏱️ 70 ثانية
+                    </small>
+
+                </button>
+
+
+                <!-- 🔴 صعب -->
+
+                <button
+                    type="button"
+                    class="level-card"
+                    data-level="hard"
+                >
+
+                    🔴
+
+                    <strong>
+                        خزنة الذهب
+                    </strong>
+
+                    <small>
+                        صعب
+                    </small>
+
+                    <small>
+                        ⏱️ 60 ثانية
+                    </small>
+
+                </button>
+
+
+                <!-- 👑 أسطوري -->
+
+                <button
+                    type="button"
+                    class="level-card"
+                    data-level="legendary"
+                >
+
+                    👑
+
+                    <strong>
+                        الخزنة الملكية
+                    </strong>
+
+                    <small>
+                        أسطوري
+                    </small>
+
+                    <small>
+                        ⏱️ 50 ثانية
+                    </small>
+
+                </button>
+
+            </div>
+
+            <button
+                type="button"
+                id="levelBackBtn"
+            >
+                ← رجوع
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         👥 شاشة تجهيز اللاعبين
+    ====================================================== -->
+
+    <section id="setupScreen">
+
+        <div class="setup-container">
+
+            <h2>
+                🏦 تجهيز التحدي
+            </h2>
+
+            <div
+                class="setup-vault-name"
+                id="selectedVaultName"
+            >
+                خزنة البرونز
+            </div>
+
+
+            <!-- اللاعبين -->
+
+            <div class="players-setup">
+
+                <div class="player-box">
+
+                    <div class="player-icon">
+                        👤
+                    </div>
+
+                    <strong>
+                        اللاعب الأول
+                    </strong>
+
+                    <small>
+                        جاهز للتحدي
+                    </small>
+
+                </div>
+
+
+                <div class="player-box">
+
+                    <div
+                        class="player-icon"
+                        id="playerTwoIcon"
+                    >
+                        👤
+                    </div>
+
+                    <strong id="playerTwoName">
+                        اللاعب الثاني
+                    </strong>
+
+                    <small id="playerTwoType">
+                        جاهز للتحدي
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- رصيد البداية -->
+
+            <div class="start-money-box">
+
+                <span>
+                    💰 رصيد البداية
+                </span>
+
+                <strong>
+                    0 نقطة
+                </strong>
+
+            </div>
+
+
+            <!-- بدء التحدي -->
+
+            <button
+                type="button"
+                id="startGameBtn"
+            >
+                🔐 ابدأ التحدي
+            </button>
+
+
+            <!-- رجوع -->
+
+            <button
+                type="button"
+                id="setupBackBtn"
+            >
+                ← رجوع للخزن
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         🏦 شاشة اللعب
+    ====================================================== -->
+
+    <section id="gameScreen">
+
+        <div class="bank-game-room">
+
+
+            <!-- رأس اللعبة -->
+
+            <header class="game-header">
+
+                <!-- اللاعب الحالي -->
+
+                <div class="game-player-card">
+
+                    <span>
+                        🎮 اللاعب الحالي
+                    </span>
+
+                    <strong id="currentPlayerName">
+                        اللاعب الأول
+                    </strong>
+
+                    <small>
+                        الرصيد:
+                        <b id="currentPlayerBalance">
+                            0
+                        </b>
+                        نقطة
+                    </small>
+
+                </div>
+
+
+                <!-- عنوان اللعبة -->
+
+                <div class="game-title-box">
+
+                    <span>
+                        🏦
+                    </span>
+
+                    <strong>
+                        BANK ARENA
+                    </strong>
+
+                    <small id="gameVaultName">
+                        خزنة البرونز
+                    </small>
+
+                </div>
+
+
+                <!-- الخصم -->
+
+                <div class="game-player-card opponent">
+
+                    <span>
+                        🛡️ الخصم
+                    </span>
+
+                    <strong id="opponentName">
+                        اللاعب الثاني
+                    </strong>
+
+                    <small>
+                        الرصيد:
+                        <b id="opponentBalance">
+                            0
+                        </b>
+                        نقطة
+                    </small>
+
+                </div>
+
+            </header>
+
+
+            <!-- معلومات الجولة -->
+
+            <div class="game-info-bar">
+
+                <div class="round-info">
+
+                    <span>
+                        🔄 الجولة
+                    </span>
+
+                    <strong id="roundNumber">
+                        1
+                    </strong>
+
+                    <small>
+                        من 2
+                    </small>
+
+                </div>
+
+
+                <div class="question-info">
+
+                    <span>
+                        ❓ السؤال
+                    </span>
+
+                    <strong id="questionNumber">
+                        1
+                    </strong>
+
+                    <small>
+                        من 10
+                    </small>
+
+                </div>
+
+
+                <div class="vault-info">
+
+                    <span>
+                        🔐 الخزنة
+                    </span>
+
+                    <strong id="gameLevel">
+                        خزنة البرونز
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- العداد -->
+
+            <div class="game-timer-area">
+
+                <div class="vault-timer">
+
+                    <div class="timer-inner">
+
+                        <span>
+                            ⏱️
+                        </span>
+
+                        <strong id="gameTimer">
+                            90
+                        </strong>
+
+                        <small>
+                            ثانية
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- المخاطرة -->
+
+            <div class="risk-panel">
+
+                <div class="risk-box">
+
+                    <span>
+                        💰 قيمة السؤال
+                    </span>
+
+                    <strong id="questionValue">
+                        100
+                    </strong>
+
+                    <small>
+                        نقطة
+                    </small>
+
+                </div>
+
+
+                <div class="risk-box">
+
+                    <span>
+                        🔥 النقاط المعلقة
+                    </span>
+
+                    <strong id="riskPoints">
+                        0
+                    </strong>
+
+                    <small>
+                        نقطة
+                    </small>
+
+                </div>
+
+
+                <div class="risk-box">
+
+                    <span>
+                        📈 المضاعف
+                    </span>
+
+                    <strong id="multiplier">
+                        ×1
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- السؤال -->
+
+            <div class="question-panel">
+
+                <div class="question-number">
+                    السؤال
+                    <span id="questionNumberBig">
+                        1
+                    </span>
+                </div>
+
+                <div class="question-text" id="questionText">
+    اضغط ابدأ لبدء الجولة
+</div>
+
+<button type="button" id="startQuestionBtn" class="start-question-btn">
+    ▶️ ابدأ
+</button>
+
+            </div>
+            <!-- =================================================
+                 🔤 الإجابات
+            ================================================== -->
+
+            <div class="answers-grid">
+
+                <button
+                    type="button"
+                    class="answer-btn"
+                    data-answer="A"
+                    id="answerA"
+                >
+                    <span class="answer-letter">A</span>
+                    <span class="answer-text">
+                        الإجابة الأولى
+                    </span>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="answer-btn"
+                    data-answer="B"
+                    id="answerB"
+                >
+                    <span class="answer-letter">B</span>
+                    <span class="answer-text">
+                        الإجابة الثانية
+                    </span>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="answer-btn"
+                    data-answer="C"
+                    id="answerC"
+                >
+                    <span class="answer-letter">C</span>
+                    <span class="answer-text">
+                        الإجابة الثالثة
+                    </span>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="answer-btn"
+                    data-answer="D"
+                    id="answerD"
+                >
+                    <span class="answer-letter">D</span>
+                    <span class="answer-text">
+                        الإجابة الرابعة
+                    </span>
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 💰 القرار بعد الإجابة الصحيحة
+            ================================================== -->
+
+            <div
+                class="decision-panel"
+                id="decisionPanel"
+                style="display:none;"
+            >
+
+                <div class="decision-title">
+                    🎉 إجابة صحيحة!
+                </div>
+
+                <p>
+                    ماذا تريد أن تفعل بالنقاط؟
+                </p>
+
+                <div class="decision-buttons">
+
+                    <button
+                        type="button"
+                        id="bankPointsBtn"
+                    >
+                        💰 سحب وإيداع
+                    </button>
+
+                    <button
+                        type="button"
+                        id="continueRiskBtn"
+                    >
+                        🔥 استمرار
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 📢 حالة اللعبة
+            ================================================== -->
+
+            <div
+                class="game-status"
+                id="gameStatus"
+            >
+                🎯 جاهز للسؤال
+            </div>
+
+
+            <!-- =================================================
+                 🚪 خروج
+            ================================================== -->
+
+            <button
+                type="button"
+                id="exitGameBtn"
+                class="exit-game-btn"
+            >
+                🚪 خروج من التحدي
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     🧠 التحكم في الشاشات
+====================================================== -->
+
+<script>
+
+"use strict";
+
+
+/* =========================================
+   📺 الشاشات
+========================================= */
+
+const homeScreen =
+    document.getElementById("homeScreen");
+
+const levelScreen =
+    document.getElementById("levelScreen");
+
+const setupScreen =
+    document.getElementById("setupScreen");
+
+const gameScreen =
+    document.getElementById("gameScreen");
+
+
+/* =========================================
+   🎮 أزرار الأنماط
+========================================= */
+
+const menuButtons =
+    document.querySelectorAll(".bank-menu button");
+
+
+/* =========================================
+   🔐 الخزن
+========================================= */
+
+const levelCards =
+    document.querySelectorAll(".level-card");
+
+
+/* =========================================
+   🏦 أسماء الخزن
+========================================= */
+
+const vaultNames = {
+
+    easy:
+        "🟢 خزنة البرونز — سهل",
+
+    medium:
+        "🔵 خزنة الفضة — متوسط",
+
+    hard:
+        "🔴 خزنة الذهب — صعب",
+
+    legendary:
+        "👑 الخزنة الملكية — أسطوري"
+
+};
+
+
+/* =========================================
+   ⏱️ وقت كل خزنة
+========================================= */
+
+const vaultTimes = {
+
+    easy: 90,
+
+    medium: 70,
+
+    hard: 60,
+
+    legendary: 50
+
+};
+
+
+/* =========================================
+   🎮 البيانات المختارة
+========================================= */
+
+let selectedMode = "";
+
+let selectedLevel = "";
+
+
+/* =========================================
+   🏠 اختيار الوضع
+========================================= */
+
+menuButtons.forEach(function(button, index) {
+
+    button.addEventListener("click", function() {
+
+        if (index === 0) {
+
+            selectedMode = "pvp";
+
+        }
+
+        else if (index === 1) {
+
+            selectedMode = "computer";
+
+        }
+
+        else {
+
+            selectedMode = "bank";
+
+        }
+
+
+        homeScreen.style.display = "none";
+
+        levelScreen.style.display = "flex";
+
+        setupScreen.style.display = "none";
+
+        gameScreen.style.display = "none";
+
+    });
+
+});
+
+
+/* =========================================
+   🔐 اختيار الخزنة
+========================================= */
+
+levelCards.forEach(function(card) {
+
+    card.addEventListener("click", function() {
+
+        selectedLevel =
+            card.dataset.level;
+
+
+        document
+            .getElementById("selectedVaultName")
+            .textContent =
+                vaultNames[selectedLevel];
+
+
+        const playerTwoIcon =
+            document.getElementById("playerTwoIcon");
+
+        const playerTwoName =
+            document.getElementById("playerTwoName");
+
+        const playerTwoType =
+            document.getElementById("playerTwoType");
+
+
+        if (selectedMode === "computer") {
+
+            playerTwoIcon.textContent =
+                "🤖";
+
+            playerTwoName.textContent =
+                "الكمبيوتر";
+
+            playerTwoType.textContent =
+                "خصم ذكي";
+
+        }
+
+        else {
+
+            playerTwoIcon.textContent =
+                "👤";
+
+            playerTwoName.textContent =
+                "اللاعب الثاني";
+
+            playerTwoType.textContent =
+                "جاهز للتحدي";
+
+        }
+
+
+        levelScreen.style.display =
+            "none";
+
+        setupScreen.style.display =
+            "flex";
+
+        gameScreen.style.display =
+            "none";
+
+    });
+
+});
+
+
+/* =========================================
+   ↩️ رجوع من الخزن
+========================================= */
+
+document
+    .getElementById("levelBackBtn")
+    .addEventListener("click", function() {
+
+        levelScreen.style.display =
+            "none";
+
+        setupScreen.style.display =
+            "none";
+
+        gameScreen.style.display =
+            "none";
+
+        homeScreen.style.display =
+            "flex";
+
+    });
+
+
+/* =========================================
+   ↩️ رجوع من التجهيز
+========================================= */
+
+document
+    .getElementById("setupBackBtn")
+    .addEventListener("click", function() {
+
+        setupScreen.style.display =
+            "none";
+
+        gameScreen.style.display =
+            "none";
+
+        levelScreen.style.display =
+            "flex";
+
+    });
+
+
+/* =========================================
+   🚀 بدء التحدي
+========================================= */
+
+document
+    .getElementById("startGameBtn")
+    .addEventListener("click", function() {
+
+
+        setupScreen.style.display =
+            "none";
+
+        gameScreen.style.display =
+            "flex";
+
+
+        /* =========================
+           🏦 اسم الخزنة
+        ========================== */
+
+        document
+            .getElementById("gameVaultName")
+            .textContent =
+                vaultNames[selectedLevel];
+
+
+        document
+            .getElementById("gameLevel")
+            .textContent =
+                vaultNames[selectedLevel];
+
+
+        /* =========================
+           ⏱️ الوقت
+        ========================== */
+
+        document
+            .getElementById("gameTimer")
+            .textContent =
+                vaultTimes[selectedLevel] || 90;
+
+
+        /* =========================
+           💰 الأرصدة
+        ========================== */
+
+        document
+            .getElementById("currentPlayerBalance")
+            .textContent =
+                "0";
+
+        document
+            .getElementById("opponentBalance")
+            .textContent =
+                "0";
+
+
+        /* =========================
+           📊 الجولة والسؤال
+        ========================== */
+
+        document
+            .getElementById("roundNumber")
+            .textContent =
+                "1";
+
+        document
+            .getElementById("questionNumber")
+            .textContent =
+                "1";
+
+        document
+            .getElementById("questionNumberBig")
+            .textContent =
+                "1";
+
+
+        /* =========================
+           💰 المخاطرة
+        ========================== */
+
+        document
+            .getElementById("questionValue")
+            .textContent =
+                "100";
+
+        document
+            .getElementById("riskPoints")
+            .textContent =
+                "0";
+
+        document
+            .getElementById("multiplier")
+            .textContent =
+                "×1";
+
+
+        /* =========================
+           👤 اسم الخصم
+        ========================== */
+
+        if (selectedMode === "computer") {
+
+            document
+                .getElementById("opponentName")
+                .textContent =
+                    "الكمبيوتر";
+
+        }
+
+        else {
+
+            document
+                .getElementById("opponentName")
+                .textContent =
+                    "اللاعب الثاني";
+
+        }
+
+
+        /* =========================
+           ❓ السؤال المؤقت
+        ========================== */
+
+        document
+            .getElementById("questionText")
+            .textContent =
+                "جاهز للسؤال الأول...";
+
+
+        document
+            .getElementById("gameStatus")
+            .textContent =
+                "🎯 جاهز للسؤال";
+
+    });
+
+
+/* =========================================
+   🚪 الخروج من التحدي
+========================================= */
+
+document
+    .getElementById("exitGameBtn")
+    .addEventListener("click", function() {
+
+        gameScreen.style.display =
+            "none";
+
+        homeScreen.style.display =
+            "flex";
+
+        selectedMode = "";
+
+        selectedLevel = "";
+
+    });
+
+
+
+  </script>
+
+</body>
+  
+
+</html>
+
+<script>
+"use strict";
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // ==============================
+    // 🎯 BANK ARENA — ربط بنك الأسئلة
+    // ==============================
+
+    if (typeof questions === "undefined") {
+        console.error("❌ questions.js غير متصل");
+        return;
+    }
+
+    let bankQuestions = [];
+    let bankIndex = 0;
+    let bankTimer = null;
+    let bankTimeLeft = 0;
+    let bankStarted = false;
+
+    const startBtn = document.getElementById("startQuestionBtn");
+    const questionText = document.getElementById("questionText");
+
+    const answerButtons = {
+        A: document.getElementById("answerA"),
+        B: document.getElementById("answerB"),
+        C: document.getElementById("answerC"),
+        D: document.getElementById("answerD")
+    };
+
+    const timerElement = document.getElementById("gameTimer");
+
+    // اختيار أسئلة المستوى المختار
+    function prepareQuestions() {
+
+        bankQuestions = questions
+            .filter(q => q.level === selectedLevel)
+            .sort(() => Math.random() - 0.5);
+
+        bankIndex = 0;
+
+        console.log(
+            "✅ تم تحميل",
+            bankQuestions.length,
+            "سؤال من مستوى:",
+            selectedLevel
+        );
+    }
+
+    // إظهار السؤال
+    function showQuestion() {
+
+        if (bankIndex >= bankQuestions.length) {
+            bankIndex = 0;
+        }
+
+        const q = bankQuestions[bankIndex];
+
+        questionText.textContent = q.question;
+
+        answerButtons.A.textContent = "A — " + q.answers.A;
+        answerButtons.B.textContent = "B — " + q.answers.B;
+        answerButtons.C.textContent = "C — " + q.answers.C;
+        answerButtons.D.textContent = "D — " + q.answers.D;
+
+        Object.values(answerButtons).forEach(btn => {
+            if (btn) {
+                btn.disabled = false;
+                btn.style.pointerEvents = "auto";
+            }
+        });
+
+        bankStarted = true;
+
+        startTimer();
+    }
+
+    // بداية السؤال
+    function startQuestion() {
+
+        if (bankStarted) return;
+
+        if (bankQuestions.length === 0) {
+            prepareQuestions();
+        }
+
+        if (bankQuestions.length === 0) {
+            questionText.textContent = "❌ لا توجد أسئلة لهذا المستوى";
+            return;
+        }
+
+        if (startBtn) {
+            startBtn.style.display = "none";
+        }
+
+        showQuestion();
+    }
+
+    // المؤقت
+    function startTimer() {
+
+        clearInterval(bankTimer);
+
+        bankTimeLeft =
+            typeof vaultTimes !== "undefined" && vaultTimes[selectedLevel]
+                ? vaultTimes[selectedLevel]
+                : 60;
+
+        updateTimer();
+
+        bankTimer = setInterval(function () {
+
+            bankTimeLeft--;
+
+            updateTimer();
+
+            if (bankTimeLeft <= 0) {
+                clearInterval(bankTimer);
+                timeUp();
+            }
+
+        }, 1000);
+    }
+
+    function updateTimer() {
+
+        if (timerElement) {
+            timerElement.textContent = bankTimeLeft;
+        }
+    }
+
+    // انتهاء الوقت
+    function timeUp() {
+
+        bankStarted = false;
+
+        Object.values(answerButtons).forEach(btn => {
+            if (btn) {
+                btn.disabled = true;
+                btn.style.pointerEvents = "none";
+            }
+        });
+
+        if (questionText) {
+            questionText.textContent += " ⏰ انتهى الوقت!";
+        }
+
+        setTimeout(nextQuestion, 1500);
+    }
+
+    // اختيار الإجابة
+    function chooseAnswer( letter ) {
+
+        if (!bankStarted) return;
+
+        const q = bankQuestions[bankIndex];
+
+        clearInterval(bankTimer);
+
+        bankStarted = false;
+
+        Object.values(answerButtons).forEach(btn => {
+            if (btn) {
+                btn.disabled = true;
+                btn.style.pointerEvents = "none";
+            }
+        });
+
+        if (letter === q.correct) {
+
+            if (questionText) {
+                questionText.textContent = "✅ إجابة صحيحة!";
+            }
+
+        } else {
+
+            if (questionText) {
+                questionText.textContent = "❌ إجابة خاطئة!";
+            }
+        }
+
+        setTimeout(nextQuestion, 1500);
+    }
+
+    // السؤال التالي
+    // السؤال التالي
+function nextQuestion() {
+
+    bankIndex++;
+
+    // لو خلصت أسئلة الجولة
+    if (bankIndex >= bankQuestions.length) {
+        bankIndex = 0;
+    }
+
+    bankStarted = false;
+
+    if (startBtn) {
+        startBtn.style.display = "block";
+        startBtn.textContent = "▶️ ابدأ السؤال";
+    }
+
+    Object.values(answerButtons).forEach(btn => {
+        if (btn) {
+            btn.disabled = true;
+            btn.style.pointerEvents = "none";
+        }
+    });
+
+    if (questionText) {
+        questionText.textContent = "اضغط ابدأ لعرض السؤال";
+    }
+}
+
+    // زر ابدأ
+    if (startBtn) {
+        startBtn.addEventListener("click", function () {
+            startQuestion();
+        });
+    }
+
+    // أزرار الإجابات
+    Object.keys(answerButtons).forEach(letter => {
+
+        const btn = answerButtons[letter];
+
+        if (btn) {
+            btn.addEventListener("click", function () {
+                chooseAnswer(letter);
+            });
+        }
+
+    });
+
+    // مراقبة اختيار المستوى
+    levelCards.forEach(card => {
+
+        card.addEventListener("click", function () {
+
+            setTimeout(function () {
+
+                prepareQuestions();
+
+                bankStarted = false;
+
+                if (startBtn) {
+                    startBtn.style.display = "block";
+                }
+
+            }, 100);
+
+        });
+
+    });
+
+});
+                          </script>

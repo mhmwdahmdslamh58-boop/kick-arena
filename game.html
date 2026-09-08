@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>🎯 اقف في صفي عشان بصفي</title>
+
+    <link
+        rel="stylesheet"
+        href="game.css">
+
+</head>
+
+<body>
+
+<main class="game-page">
+
+
+    <!-- =========================================
+         اختيار طريقة اللعب
+    ========================================== -->
+
+    <section
+        id="modeScreen"
+        class="screen">
+
+        <div class="setup-box">
+
+            <div class="game-logo">
+                ⚽ KICK ARENA
+            </div>
+
+            <h1>
+                🎯 اقف في صفي عشان بصفي
+            </h1>
+
+            <p class="setup-text">
+                اختر طريقة اللعب
+            </p>
+
+            <div class="mode-options">
+
+                <button
+                    id="friendModeBtn"
+                    class="choice-btn active"
+                    data-mode="friend"
+                    type="button">
+
+                    👥 صديق
+
+                </button>
+
+                <button
+                    id="computerModeBtn"
+                    class="choice-btn"
+                    data-mode="computer"
+                    type="button">
+
+                    🤖 كمبيوتر
+
+                </button>
+
+            </div>
+
+            <button
+                id="modeNextBtn"
+                class="main-btn"
+                type="button">
+
+                ➡️ التالي
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         اختيار الصعوبة
+    ========================================== -->
+
+    <section
+        id="levelScreen"
+        class="screen hidden">
+
+        <div class="setup-box">
+
+            <div class="game-logo">
+                🎯 KICK ARENA
+            </div>
+
+            <h2>
+                اختر مستوى اللعبة
+            </h2>
+
+            <p class="setup-text">
+                عدد اللاعبين على اللوحة
+            </p>
+
+            <div class="level-options">
+
+                <button
+                    id="easyBtn"
+                    class="choice-btn active"
+                    data-level="easy"
+                    type="button">
+
+                    🟢 سهل
+
+                    <small>
+                        12 لاعب
+                    </small>
+
+                </button>
+
+
+                <button
+                    id="mediumBtn"
+                    class="choice-btn"
+                    data-level="medium"
+                    type="button">
+
+                    🟡 متوسط
+
+                    <small>
+                        20 لاعب
+                    </small>
+
+                </button>
+
+
+                <button
+                    id="hardBtn"
+                    class="choice-btn"
+                    data-level="hard"
+                    type="button">
+
+                    🔴 صعب
+
+                    <small>
+                        28 لاعب
+                    </small>
+
+                </button>
+
+            </div>
+
+
+            <button
+                id="startBtn"
+                class="main-btn"
+                type="button">
+
+                🎮 ابدأ اللعبة
+
+            </button>
+
+
+            <button
+                id="selectionBackBtn"
+                class="back-btn"
+                type="button">
+
+                ↩ رجوع
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         اختيار اللاعب السري
+    ========================================== -->
+
+    <section
+        id="selectionScreen"
+        class="screen hidden">
+
+        <div class="setup-box">
+
+            <div class="game-logo">
+                🔒 اللاعب السري
+            </div>
+
+            <h2 id="selectionTitle">
+                اختيار اللاعب السري
+            </h2>
+
+            <p
+                id="selectionTurn"
+                class="setup-text">
+
+                دور اللاعب 1
+
+            </p>
+
+            <p class="setup-text">
+                اختر لاعبًا واحدًا ليكون لاعبك السري
+            </p>
+
+
+            <div
+                id="selectionPlayers"
+                class="players-grid">
+            </div>
+
+
+            <button
+                id="confirmBtn"
+                class="main-btn"
+                type="button"
+                disabled>
+
+                🔒 تأكيد اللاعب السري
+
+            </button>
+
+
+            <button
+                id="selectionBackBtn"
+                class="back-btn"
+                type="button">
+
+                ↩ رجوع
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         شاشة اللعبة
+    ========================================== -->
+
+    <section
+        id="gameScreen"
+        class="screen hidden">
+
+        <div class="game-top">
+
+            <button
+                id="gameBackBtn"
+                class="small-btn"
+                type="button">
+
+                ↩ خروج
+
+            </button>
+
+
+            <div class="round-label">
+                🎯 اقف في صفي عشان بصفي
+            </div>
+
+
+            <button
+                id="newGameBtn"
+                class="small-btn"
+                type="button">
+
+                🔄 جديد
+
+            </button>
+
+        </div>
+
+
+        <div class="turn-box">
+
+            دور:
+
+            <strong id="turnText">
+                اللاعب 1
+            </strong>
+
+        </div>
+
+
+        <div class="players-info">
+
+            <div class="info-box">
+
+                <span>
+                    الدور الحالي
+                </span>
+
+                <strong id="yourPlayerText">
+                    اللاعب 1
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    المستوى
+                </span>
+
+                <strong id="levelText">
+                    سهل
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    أسئلة إضافية
+                </span>
+
+                <strong id="extraText">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <p
+            id="gameMessage"
+            class="hint">
+
+            دور اللاعب 1 - اسأل خصمك شفهيًا ثم علّم اللاعبين المستبعدين.
+
+        </p>
+
+
+        <div
+            id="gameBoard"
+            class="players-grid">
+        </div>
+
+
+        <div class="game-actions">
+
+            <button
+                id="finishBtn"
+                class="action-btn"
+                type="button">
+
+                ✅ خلصت
+
+            </button>
+
+
+            <button
+                id="guessBtn"
+                class="action-btn primary"
+                type="button">
+
+                🎯 خمن اللاعب
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         شاشة التخمين
+    ========================================== -->
+
+    <section
+        id="guessScreen"
+        class="screen hidden">
+
+        <div class="setup-box">
+
+            <div class="game-logo">
+                🎯 التخمين
+            </div>
+
+            <h2>
+                من هو اللاعب السري للخصم؟
+            </h2>
+
+            <p class="setup-text">
+                اختر اللاعب الذي تعتقد أنه اللاعب السري.
+            </p>
+
+
+            <div
+                id="guessPlayers"
+                class="players-grid">
+            </div>
+
+
+            <button
+                id="guessBackBtn"
+                class="back-btn"
+                type="button">
+
+                ↩ إلغاء التخمين
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         شاشة النتيجة
+    ========================================== -->
+
+    <section
+        id="resultScreen"
+        class="screen hidden">
+
+        <div class="result-box">
+
+            <div id="resultIcon">
+                🏆
+            </div>
+
+
+            <h1 id="resultTitle">
+                مبروك!
+            </h1>
+
+
+            <p id="resultText">
+                انتهت المباراة
+            </p>
+
+
+            <!-- مهم: ID مختلف عن زر الجديد الموجود داخل اللعبة -->
+
+            <button
+                id="resultNewGameBtn"
+                class="main-btn"
+                type="button">
+
+                🔄 العب مرة أخرى
+
+            </button>
+
+
+            <button
+                id="resultHomeBtn"
+                class="back-btn"
+                type="button">
+
+                🏠 الرئيسية
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================
+     ملفات JavaScript
+========================================== -->
+
+<script src="players-data.js"></script>
+<script src="players.js"></script>
+<script src="game.js"></script>
+</body>
+
+</html>
+<script src="players.js"></script>
+<script>
+    window.addEventListener("playersLoaded", function () {
+        console.log("✅ players.js انتهى وتحميل اللاعبين جاهز");
+    });
+</script>
+<script src="game.js"></script>
